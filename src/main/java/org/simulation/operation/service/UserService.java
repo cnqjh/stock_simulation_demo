@@ -26,7 +26,7 @@ public interface UserService {
 	 * 获得所有用户
 	 * @return User对象的List集合
 	 * */
-	List<User> findUser(User user,PageModel pageModel);
+	List<User> findUser(User user);
 		
 	/**
 	 * 修改用户

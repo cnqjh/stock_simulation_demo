@@ -1,6 +1,10 @@
 package org.simulation.operation.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.simulation.operation.domain.User;
@@ -10,10 +14,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.ModelAndView;
+import org.simulation.operation.common.PageModel;
 import org.simulation.operation.common.UserConstants;
 
 
@@ -59,6 +66,42 @@ public class UserController {
 		return mv;
 	}
 
+
+    /**
+     * 处理查询请求
+     * 
+     * @param pageIndex
+     *            请求的是第几页
+     * @param employee
+     *            模糊查询参数
+     * @param Model
+     *            model
+     */
+    @RequestMapping(value = "/user/selectUser")
+    public String selectUser(@ModelAttribute User user, String userCode, 
+	    Model model) {
+	/** 查询用户信息 */
+	List<User> users = userService.findUser(user);
+	model.addAttribute("users", users);
+
+	return "user/user";
+
+    }
+    @RequestMapping(value = "/user/personalInformation")
+    public String personalInformation(Integer pageIndex, 
+	    Model model,HttpServletRequest request) {
+	PageModel pageModel = new PageModel();
+	if (pageIndex != null) {
+	    pageModel.setPageIndex(pageIndex);
+
+	}
+	User user =(User)request.getSession().getAttribute(UserConstants.USER_SESSION); 
+	List<User> personalInformations = new ArrayList<>();
+	personalInformations.add(user);
+	model.addAttribute("personalInformations", personalInformations);
+	return "user/personalInformation";
+
+    }
 
 
 

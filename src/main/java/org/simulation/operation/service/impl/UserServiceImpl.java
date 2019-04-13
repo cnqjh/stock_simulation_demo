@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> findUser(User user, PageModel pageModel) {
+	public List<User> findUser(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}

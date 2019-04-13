@@ -13,10 +13,13 @@ public class UserConstants {
 	public static final String RANKINGTABLE ="rank_inf";
 	public static final String VIOLATIONTABLE = "violations_inf";
 	public static final String HISTORYHOLDINGTABLE = "holding_stock_inf";
+	public static final String DETAILS_ASSETS_TABLE = "details_assets_inf";
 	// 登录
 	public static final String LOGIN = "loginForm";
 	// 用户的session对象
 	public static final String USER_SESSION = "user_session";
+	
+	public static final String REGION_SESSION = "region";
 	
 	// 默认每页20条数据
 	public static int PAGE_DEFAULT_SIZE = 20;
